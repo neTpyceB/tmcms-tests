@@ -1,0 +1,19 @@
+{
+  "name": "devp-eu/tmcms-tests",
+  "type": "library",
+  "description": "PHPUnit tests for TMCms",
+  "keywords": [
+    "PHPUnit tests",
+    "TMCms"
+  ],
+  "homepage": "http://devp.eu/",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Vadims Petrusevs",
+      "email": "info@devp.eu",
+      "homepage": "http://devp.eu/",
+      "role": "Developer"
+    }
+  ]
+}
