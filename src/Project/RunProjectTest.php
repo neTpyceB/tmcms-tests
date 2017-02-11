@@ -5,9 +5,9 @@ namespace TMCms\Tests\Admin;
 use TMCms\Admin\Messages;
 use TMCms\Admin\Users\Entity\UsersMessageEntity;
 
-class MessagesTest extends \PHPUnit_Framework_TestCase
+class RunProjectTest extends \PHPUnit_Framework_TestCase
 {
-    public function testSendMessage()
+    public function testAll()
     {
         $message_text = 'Test text';
         $to_user_id = 1;
