@@ -1,6 +1,6 @@
 <?php
 
-namespace TMCms\Tests\Admin;
+namespace Tests\TMCms\Admin;
 
 use TMCms\Admin\Messages;
 use TMCms\Admin\Users\Entity\UsersMessageEntity;
