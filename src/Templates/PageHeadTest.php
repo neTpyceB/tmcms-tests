@@ -3,8 +3,11 @@
 namespace TMCms\Tests\Templates;
 
 use TMCms\Admin\Entity\LanguageEntity;
+use TMCms\Admin\Entity\LanguageEntityRepository;
 use TMCms\Admin\Structure\Entity\PageEntity;
+use TMCms\Admin\Structure\Entity\PageEntityRepository;
 use TMCms\Admin\Structure\Entity\PageTemplateEntity;
+use TMCms\Admin\Structure\Entity\PageTemplateEntityRepository;
 use TMCms\App\Frontend;
 use TMCms\Cache\Cacher;
 use TMCms\Files\MimeTypes;
@@ -18,6 +21,11 @@ class PageHeadTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         Cacher::getInstance()->clearAllCaches();
+
+        // Pre-create tables
+        new LanguageEntityRepository();
+        new PageTemplateEntityRepository();
+        new PageEntityRepository();
 
         // Create fake language
         $language = new LanguageEntity();
