@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\TMCms\Templates;
+namespace TMCms\Tests\Templates;
 
 use TMCms\Admin\Entity\LanguageEntity;
 use TMCms\Admin\Structure\Entity\PageEntity;

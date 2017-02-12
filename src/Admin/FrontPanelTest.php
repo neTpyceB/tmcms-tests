@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\TMCms\Admin;
+namespace TMCms\Tests\Admin;
 
 use TMCms\Admin\FrontPanel;
 

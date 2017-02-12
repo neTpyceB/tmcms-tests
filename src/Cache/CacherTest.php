@@ -1,5 +1,5 @@
 <?php
-namespace Tests\TMCms\Cache;
+namespace TMCms\Tests\Cache;
 
 use TMCms\Cache\Cacher;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\TMCms\Cache;
+namespace TMCms\Tests\Cache;
 
 
 define('MEMCACHECACHE_TEST_KEY', 'memcache_test_key_' . mt_rand(0, 999));

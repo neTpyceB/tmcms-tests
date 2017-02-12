@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\TMCms\Cache;
+namespace TMCms\Tests\Cache;
 
 define('FILECACHE_TEST_KEY', 'file_test_key_' . mt_rand(0, 999));
 define('FILECACHE_TEST_VALUE', mt_rand(0, 999));

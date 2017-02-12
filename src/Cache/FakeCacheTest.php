@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\TMCms\Cache;
+namespace TMCms\Tests\Cache;
 
 define('FAKECACHE_TEST_KEY', 'fake_test_key_' . mt_rand(0, 999));
 define('FAKECACHE_TEST_VALUE', mt_rand(0, 999));

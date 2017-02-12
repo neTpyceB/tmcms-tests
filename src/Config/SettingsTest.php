@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\TMCms\App;
+namespace TMCms\Tests\App;
 
 use TMCms\Config\Settings;
 

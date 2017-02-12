@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\TMCms\Templates;
+namespace TMCms\Tests\Templates;
 
 use TMCms\Templates\PageBody;
 
