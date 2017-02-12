@@ -33,13 +33,13 @@ class PageHeadTest extends \PHPUnit_Framework_TestCase
             'short' => 'xx',
             'long' => 'XXXX'
         ]);
-        $language->preventDuplicateByFields(['short']);
+        $language->findAndLoadPossibleDuplicateEntityByFields(['short']);
         $language->save();
 
         // Create template
         $template = new PageTemplateEntity();
         $template->setFile('xx.xx');
-        $template->preventDuplicateByFields(['file']);
+        $template->findAndLoadPossibleDuplicateEntityByFields(['file']);
         $template->save();
 
         // Create main page for it
@@ -55,13 +55,45 @@ class PageHeadTest extends \PHPUnit_Framework_TestCase
             'menu_name' => 'main',
             'lastmod_ts' => NOW,
         ]);
-        $page->preventDuplicateByFields(['location', 'pid']);
+        $page->findAndLoadPossibleDuplicateEntityByFields(['location', 'pid']);
         $page->save();
     }
 
     public function tearDown()
     {
-        // Delete xx page and language
+        // Delete xx page, template and language
+
+
+        // Create fake language
+        $language = new LanguageEntity();
+        $language->loadDataFromArray([
+            'short' => 'xx',
+            'long' => 'XXXX'
+        ]);
+        $language->findAndLoadPossibleDuplicateEntityByFields(['short']);
+        $language->deleteObject();
+
+        // Create template
+        $template = new PageTemplateEntity();
+        $template->setFile('xx.xx');
+        $template->findAndLoadPossibleDuplicateEntityByFields(['file']);
+        $template->deleteObject();
+
+        // Create main page for it
+        $page = new PageEntity();
+        $page->loadDataFromArray([
+            'template_id' => $template->getId(),
+            'pid' => 0,
+            'location' => 'xx',
+            'title' => 'XXXX',
+            'in_menu' => 1,
+            'active' => 1,
+            'string_label' => 'xx',
+            'menu_name' => 'main',
+            'lastmod_ts' => NOW,
+        ]);
+        $page->findAndLoadPossibleDuplicateEntityByFields(['location', 'pid']);
+        $page->deleteObject();
     }
 
 
