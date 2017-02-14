@@ -4,11 +4,15 @@ namespace TMCms\Tests\Admin;
 
 use TMCms\Admin\Messages;
 use TMCms\Admin\Users\Entity\UsersMessageEntity;
+use TMCms\Admin\Users\Entity\UsersMessageEntityRepository;
 
 class MessagesTest extends \PHPUnit_Framework_TestCase
 {
     public function testSendMessage()
     {
+        // Pre-create db
+        new UsersMessageEntityRepository();
+
         $message_text = 'Test text';
         $to_user_id = 1;
 

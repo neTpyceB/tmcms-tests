@@ -57,6 +57,8 @@ class PageHeadTest extends \PHPUnit_Framework_TestCase
         ]);
         $page->findAndLoadPossibleDuplicateEntityByFields(['location', 'pid']);
         $page->save();
+
+        Cacher::getInstance()->clearAllCaches();
     }
 
     public function tearDown()
