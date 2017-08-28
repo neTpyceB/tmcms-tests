@@ -8,7 +8,7 @@ class MimeTypesTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetMimeType()
     {
-        $res = MimeTypes::getMimeType('pdf');
+        $res = MimeTypes::getMimeTypeByExt('pdf');
 
         $this->assertEquals('application/pdf', $res);
     }
