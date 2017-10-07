@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace TMCms\Tests\Admin;
 
@@ -8,8 +9,8 @@ use TMCms\Admin\Users\Entity\AdminUserGroup;
 use TMCms\Routing\Languages;
 
 // Ensure DB exists
-$users = new Users\Entity\AdminUserRepository();
-$groups = new Users\Entity\AdminUserGroupRepository();
+new Users\Entity\AdminUserRepository();
+new Users\Entity\AdminUserGroupRepository();
 
 class UsersTest extends \PHPUnit_Framework_TestCase
 {

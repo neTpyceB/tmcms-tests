@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace TMCms\Tests\Admin;
 
+use function stripos;
 use TMCms\Admin\Menu;
 
 class MenuTest extends \PHPUnit_Framework_TestCase
@@ -18,33 +20,53 @@ class MenuTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($menu->isMenuEnabled());
     }
 
-    public function test__toString()
+    public function test__toStringThrowsNoErrors()
     {
-        ob_start();
-        $menu = Menu::getInstance();
-        echo $menu;
-        $html = ob_get_clean();
-        $this->assertTrue(is_string($html));
+        $menu = (string)Menu::getInstance();
+
+        $this->assertFalse(stripos('error', $menu));
+        $this->assertFalse(stripos('exception', $menu));
+
     }
 
     public function testGetMenuHeaderView()
     {
         // Test no auth
-        ob_start();
         $menu = Menu::getInstance();
-        echo $menu->getMenuHeaderView();
-        $html = ob_get_clean();
-        $this->assertTrue(is_string($html));
+        $header = $menu->getMenuHeaderView();
 
-        // Test authed
-        if (!defined('USER_ID')) define('USER_ID', 1);
-        if (!defined('P')) define('P', 'guest');
+        $this->assertFalse(stripos('error', $header));
+        $this->assertFalse(stripos('exception', $header));
 
-        ob_start();
+        // Test authorized
+        if (!defined('USER_ID')) {
+            define('USER_ID', 1);
+        }
+        if (!defined('P')) {
+            define('P', 'guest');
+        }
+
         $menu = Menu::getInstance();
-        echo $menu->getMenuHeaderView();
-        $html = ob_get_clean();
-        $this->assertTrue(is_string($html));
+        $header = $menu->getMenuHeaderView();
+
+        $this->assertFalse(stripos('error', $header));
+        $this->assertFalse(stripos('exception', $header));
+    }
+
+    public function testMayAddItemsFlag()
+    {
+        $menu = Menu::getInstance();
+        $menu->setMayAddItemsFlag(false);
+
+        $this->assertFalse($menu->isAddingItemsAllowed());
+    }
+
+    public function testAddMenuSeparator()
+    {
+        $menu = Menu::getInstance();
+        $res = $menu->addMenuSeparator('test');
+
+        $this->assertEquals($menu, $res);
     }
 
     public function testAddMenuItem()
@@ -58,7 +80,10 @@ class MenuTest extends \PHPUnit_Framework_TestCase
     public function testAddSubMenuItem()
     {
         // Test-related
-        if (!defined('P')) define('P', 'guest');
+        if (!defined('P')) {
+            define('P', 'guest');
+        }
+
         $menu = Menu::getInstance();
         $res = $menu->addSubMenuItem('_default');
 
@@ -68,7 +93,9 @@ class MenuTest extends \PHPUnit_Framework_TestCase
     public function testAddMultipleItems()
     {
         // Test-related
-        if (!defined('P')) define('P', 'guest');
+        if (!defined('P')) {
+            define('P', 'guest');
+        }
 
         $menu = Menu::getInstance();
 
@@ -99,5 +126,25 @@ class MenuTest extends \PHPUnit_Framework_TestCase
         $res = $menu->setMayAddItemsFlag(false);
 
         $this->assertEquals($menu, $res);
+    }
+
+    public function testGetPageTitle()
+    {
+        $radnom_string = 'random_string';
+
+        $menu = Menu::getInstance();
+        $res = $menu->setPageTitle($radnom_string);
+
+        $this->assertEquals($radnom_string, $menu->getPageTitle());
+    }
+
+    public function testGetPageDescription()
+    {
+        $radnom_string = 'random_string';
+
+        $menu = Menu::getInstance();
+        $res = $menu->setPageDescription($radnom_string);
+
+        $this->assertEquals($radnom_string, $menu->getPageDescription());
     }
 }

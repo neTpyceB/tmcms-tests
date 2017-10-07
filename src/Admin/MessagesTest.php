@@ -1,10 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace TMCms\Tests\Admin;
 
+use function in_array;
 use TMCms\Admin\Messages;
 use TMCms\Admin\Users\Entity\UsersMessageEntity;
 use TMCms\Admin\Users\Entity\UsersMessageEntityRepository;
+use TMCms\HTML\BreadCrumbs;
 
 class MessagesTest extends \PHPUnit_Framework_TestCase
 {
@@ -37,6 +40,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
 
         // Receive messages
         $messages = Messages::receiveMessages($from_user_id, $to_user_id);
+
         // Remove test message
         $message->deleteObject();
 
@@ -48,5 +52,15 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertTrue(in_array($message_text, $texts));
+    }
+
+    public function testSendFlashAlert()
+    {
+        $message_text = 'Test text';
+
+        Messages::sendFlashAlert($message_text);
+        Messages::flushSessionAlerts();
+
+        $this->assertTrue(in_array($message_text, BreadCrumbs::getInstance()->getAlerts()));
     }
 }

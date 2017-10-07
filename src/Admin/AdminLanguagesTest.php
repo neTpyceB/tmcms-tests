@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace TMCms\Tests\Admin;
 
 use TMCms\Admin\AdminLanguages;
+use TMCms\Admin\Entity\LanguageEntityRepository;
 
 class AdminLanguagesTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,6 +14,6 @@ class AdminLanguagesTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue(is_array($pairs));
         $this->assertTrue(count($pairs) > 0);
-        $this->assertArrayHasKey('en', $pairs);
+        $this->assertArrayHasKey(LanguageEntityRepository::ADMIN_LANGUAGE_DEFAULT_SHORT, $pairs);
     }
 }
