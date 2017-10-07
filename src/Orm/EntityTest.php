@@ -11,7 +11,9 @@ class EntityTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         if (!defined('LNG')) {
-            define('LNG', 'en');
+            $lngs = Languages::getPairs();
+            $lng = key($lngs);
+            define('LNG', $lng);
         }
 
         // Ensure db exists
@@ -47,10 +49,11 @@ class EntityTest extends \PHPUnit_Framework_TestCase
 
         $entity->setTitle($test_title . '2');
         $entity->setDescription([
-            'en' => $test_description . '2',
-            'ru' => $test_description . '2',
+            LNG => $test_description . '2',
         ]);
         $this->assertEquals($test_title . '2', $entity->getTitle());
         $this->assertEquals($test_description . '2', $entity->getDescription());
+
+        $entity->deleteObject();
     }
 }

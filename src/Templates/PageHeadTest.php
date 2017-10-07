@@ -2,6 +2,7 @@
 
 namespace TMCms\Tests\Templates;
 
+use function dump;
 use TMCms\Admin\Entity\LanguageEntity;
 use TMCms\Admin\Entity\LanguageEntityRepository;
 use TMCms\Admin\Structure\Entity\PageEntity;
@@ -31,7 +32,7 @@ class PageHeadTest extends \PHPUnit_Framework_TestCase
         $language = new LanguageEntity();
         $language->loadDataFromArray([
             'short' => 'xx',
-            'long' => 'XXXX'
+            'long'  => 'XXXX'
         ]);
         $language->findAndLoadPossibleDuplicateEntityByFields(['short']);
         $language->save();
@@ -45,15 +46,15 @@ class PageHeadTest extends \PHPUnit_Framework_TestCase
         // Create main page for it
         $page = new PageEntity();
         $page->loadDataFromArray([
-            'template_id' => $template->getId(),
-            'pid' => 0,
-            'location' => 'xx',
-            'title' => 'XXXX',
-            'in_menu' => 1,
-            'active' => 1,
+            'template_id'  => $template->getId(),
+            'pid'          => 0,
+            'location'     => 'xx',
+            'title'        => 'XXXX',
+            'in_menu'      => 1,
+            'active'       => 1,
             'string_label' => 'xx',
-            'menu_name' => 'main',
-            'lastmod_ts' => NOW,
+            'menu_name'    => 'main',
+            'lastmod_ts'   => NOW,
         ]);
         $page->findAndLoadPossibleDuplicateEntityByFields(['location', 'pid']);
         $page->save();
@@ -70,7 +71,7 @@ class PageHeadTest extends \PHPUnit_Framework_TestCase
         $language = new LanguageEntity();
         $language->loadDataFromArray([
             'short' => 'xx',
-            'long' => 'XXXX'
+            'long'  => 'XXXX'
         ]);
         $language->findAndLoadPossibleDuplicateEntityByFields(['short']);
         $language->deleteObject();
@@ -84,15 +85,15 @@ class PageHeadTest extends \PHPUnit_Framework_TestCase
         // Create main page for it
         $page = new PageEntity();
         $page->loadDataFromArray([
-            'template_id' => $template->getId(),
-            'pid' => 0,
-            'location' => 'xx',
-            'title' => 'XXXX',
-            'in_menu' => 1,
-            'active' => 1,
+            'template_id'  => $template->getId(),
+            'pid'          => 0,
+            'location'     => 'xx',
+            'title'        => 'XXXX',
+            'in_menu'      => 1,
+            'active'       => 1,
             'string_label' => 'xx',
-            'menu_name' => 'main',
-            'lastmod_ts' => NOW,
+            'menu_name'    => 'main',
+            'lastmod_ts'   => NOW,
         ]);
         $page->findAndLoadPossibleDuplicateEntityByFields(['location', 'pid']);
         $page->deleteObject();
@@ -102,11 +103,11 @@ class PageHeadTest extends \PHPUnit_Framework_TestCase
     public function testsetHtmlTagAttributes()
     {
         PageHead::getInstance()
-            ->addHtmlTagAttributes('īs_body');
+            ->addHtmlTagAttributes('is_body');
 
-        $html = Frontend::getInstance();
+        $html = (string)Frontend::getInstance();
 
-        $this->assertTrue(stripos($html, 'īs_body') !== false);
+        $this->assertTrue(stripos($html, 'is_body') !== false);
     }
 
     public function testGetMimeTypes()
