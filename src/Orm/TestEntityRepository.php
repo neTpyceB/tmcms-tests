@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace TMCms\Tests\Orm;
 
 use TMCms\Orm\EntityRepository;
+use TMCms\Orm\TableStructure;
 
 class TestEntityRepository extends EntityRepository
 {
@@ -12,13 +13,13 @@ class TestEntityRepository extends EntityRepository
     protected $table_structure = [
         'fields' => [
             'date'        => [
-                'type' => 'ts',
+                'type' => TableStructure::FIELD_TYPE_UNSIGNED_INTEGER,
             ],
             'title'       => [
-                'type' => 'translation',
+                'type' => TableStructure::FIELD_TYPE_TRANSLATION,
             ],
             'description' => [
-                'type' => 'translation',
+                'type' => TableStructure::FIELD_TYPE_TRANSLATION,
             ],
         ],
     ];
