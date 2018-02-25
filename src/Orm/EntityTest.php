@@ -32,7 +32,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
         }
 
         $entity = new TestEntity();
-        $entity->debug = true;
+        $entity->enableDebug();
         $entity->setDate(NOW);
         $entity->setTitle($test_title);
         $entity->setDescription($desrc_array);
