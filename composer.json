@@ -20,5 +20,10 @@
     "psr-4": {
       "TMCms\\Tests\\": "src"
     }
+  },
+  "require-dev": {
+  },
+  "require": {
+    "codeception/codeception": "^2.4"
   }
 }
